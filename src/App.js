@@ -1,20 +1,51 @@
 import './App.css';
-import BgColor1 from './component/bgColor/BgColor1';
-import Timer1 from './component/Timer1';
-import Todo1 from './component/Todo/Todo1';
-import Todo2 from './component/Todo/Todo2';
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import Home1 from './home/Home1';
+import About1 from './home/About1';
+import Community from './home/Community';
+import NoticeDetail from './home/NoticeDetail';
+import Notice from './home/Notice';
+import TodoApp from './todo/TodoaApp';
+import Filter1 from './filter/Filter1';
+import RouteApp from './route/RouteApp';
+import Route1 from './route/Route1';
+import Route2 from './route/Route2';
+import Route1_1 from './route/Route1_1';
+import Route1_1_1 from './route/Route1_1_1';
+import Route1_2 from './route/Route1_2';
+import Route2_1 from './route/Route2_1';
 
 function App() {
   
   return (
     <div className='App'>
-      <hr></hr>
-      <Timer1 />
-      <hr></hr>
-      <BgColor1 />
-      <hr></hr>
-      <Todo2 />
-      <Todo1 />
+      <BrowserRouter>
+        <nav>
+          <Link to="/">홈</Link> | <Link to="/about">소개</Link> | <Link to="/community"> 커뮤니티</Link>
+          | <Link to="/todo">TODO</Link> | <Link to="/filter">Filter</Link> | <Link to="/route">라우트</Link>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home1 />}/>
+          <Route path="/about" element={<About1 />}/>
+          <Route path="/community" element={<Community />}>
+            <Route path="notice" element={<Notice />}/>
+            <Route path="notice/:id" element={<NoticeDetail />}/> 
+          </Route>
+          <Route path='/todo' element={<TodoApp />}/>
+          <Route path='/filter' element={<Filter1 />}/>
+          <Route path='/route' element={<RouteApp />}>
+            <Route path='route1' element={<Route1 />}>
+              <Route path='route1_1' element={<Route1_1 />}>
+                <Route path='route1_1_1' element={<Route1_1_1 />}/>
+              </Route>
+              <Route path='route1_2' element={<Route1_2 />}/>
+            </Route>
+            <Route path='route2' element={<Route2 />}>
+              <Route path='route2_1' element={<Route2_1 />}/>
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -28,7 +28,7 @@ export default function Todo1(){
     };
   
     return (
-      <div style={{ padding: "20px" }}>
+      <div>
         <h2> DAILY</h2>
   
         <input
